@@ -1,0 +1,15 @@
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+      when: always
+    - when: never
+
+stages:
+  - build
+
+build:
+  stage: build
+  image: $CI_REGISTRY_IMAGE/host/build
+  script:
+    - time make setup
+    - time make build

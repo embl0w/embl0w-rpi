@@ -1,0 +1,6 @@
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - script: time make setup
+  - script: time make build

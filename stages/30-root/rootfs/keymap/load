@@ -1,0 +1,8 @@
+#!/bin/sh
+BINDIR="/$0"
+BINDIR=${BINDIR%/*}
+BINDIR=${BINDIR:-.}
+BINDIR=${BINDIR#/}/
+BINDIR=$(cd "$BINDIR"; pwd)
+KEYMAP=${1-default}
+zcat $BINDIR/$KEYMAP.bkmap.gz | busybox loadkmap

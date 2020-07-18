@@ -1,0 +1,9 @@
+dtparam=audio=on
+dtparam=i2c_arm=on
+dtparam=watchdog=on
+dtoverlay=i2c-rtc,ds1307
+disable_overscan=1
+hdmi_force_hotplug=1
+#hdmi_group=2
+#hdmi_mode=4
+initramfs initramfs.gz

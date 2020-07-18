@@ -1,0 +1,1 @@
+quiet net.ifnames=0 bootdev=/dev/mmcblk0p1

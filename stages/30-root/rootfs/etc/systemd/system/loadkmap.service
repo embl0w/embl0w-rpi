@@ -1,0 +1,11 @@
+[Unit]
+Description = Load default keymap
+ConditionPathExists = /keymap/load
+After = sysinit.target
+
+[Service]
+Type = oneshot
+ExecStart = /keymap/load
+
+[Install]
+WantedBy = basic.target
