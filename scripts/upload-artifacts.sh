@@ -8,5 +8,7 @@ if test -n "$SHAREDARTIFACTSDIR"; then
     mkdir -p $DIR
     cp "$@" $DIR
 else
-    rclone copy --no-traverse "$@" artifacts:$DIR/
+    for i in "$@"; do
+        rclone copy --no-traverse "$i" artifacts:$DIR/
+    done
 fi
