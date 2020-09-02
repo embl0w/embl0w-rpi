@@ -34,7 +34,7 @@ $(ROOTFSDIR): $(PREBUILTDIR)
 	$(SUDO) rm -rf $@/var/lib/apt/lists/*
 
 $(ROOTFSFILE): $(ROOTFSDIR)
-	$(SUDO) time -v mksquashfs $(ROOTFSDIR) $@ -no-fragments -comp zstd -e /boot
+	$(SUDO) time -v mksquashfs $(ROOTFSDIR) $@ -no-fragments -e /boot
 
 $(BOOTRAMFSFILE): $(ROOTFSDIR)
 	mkdir -p $(BOOTRAMFSDIR)/bin
