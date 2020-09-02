@@ -8,7 +8,7 @@ BOOTIMGGZ	= $(BOOTIMG).gz
 SUDO		= sudo
 
 BOOTIMAGESIZE	= 1024
-BOOTPARTSIZE	= 320
+BOOTPARTSIZE	= 512
 
 .PHONY: all clean build upload
 

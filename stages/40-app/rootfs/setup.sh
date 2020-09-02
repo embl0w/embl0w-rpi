@@ -1,15 +1,14 @@
 #!/bin/bash
 set -xe
 
-apt update
-apt install -y libgl1-mesa-dri
-apt install -y kmscube
+: ${EL_USERNAME=pi}
+: ${EL_HOMEDIR=/home/$EL_USERNAME}
 
 chmod 0600 /etc/ssh/ssh_host_*_key
 
-mkdir /home/pi/.ssh
-cp /ssh/pi.id_rsa.pub /home/pi/.ssh/authorized_keys
-chown pi.pi -R /home/pi/.ssh
+mkdir $EL_HOMEDIR/.ssh
+cp /ssh/id_rsa.pub $EL_HOMEDIR/.ssh/authorized_keys
+chown $EL_USERNAME.$EL_USERNAME -R $EL_HOMEDIR/.ssh
 rm -rf /ssh
 
 echo "PasswordAuthentication no" >>/etc/ssh/sshd_config
@@ -17,6 +16,17 @@ echo "PasswordAuthentication no" >>/etc/ssh/sshd_config
 ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 systemctl enable wpa_supplicant@wlan0.service
+
+for i in /lib/modules/*; do
+	case ${i##*/} in
+    *-v7+) ;;
+    *-v7l+) ;;
+    *-v8+) rm -rf $i ;;
+    *) rm -rf $i ;;
+    esac
+done
+
+rm -f /boot/*.bin /boot/*.dat /boot/*.elf /boot/LICENCE.broadcom
 
 apt-get clean
 rm -f /setup.sh

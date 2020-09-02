@@ -1,9 +1,10 @@
 #!/bin/bash
-set -eu
 
-DEV=/dev/dri/card0
-if test -e /dev/dri/card1; then
-    DEV=/dev/dri/card1
-fi
+busybox httpd -p 127.0.0.1:8080 -h /app/webroot
 
-kmscube -D $DEV
+while true; do
+    xinit ./ENTRYX -- -retro -dpms
+    echo "Terminated exit code $?"
+    echo "10 seconds to restart..."
+    sleep 10
+done
